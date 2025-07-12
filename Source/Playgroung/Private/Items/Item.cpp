@@ -16,7 +16,10 @@ void AItem::BeginPlay()
 {
 	Super::BeginPlay();
 
-	UE_LOG(LogTemp, Warning, TEXT("Item BeginPlay called!"));
+	UE_LOG(LogTemp, Warning, TEXT("Item BeginPlay called! with C++"));
+
+	FString Name = GetName();
+	UE_LOG(LogTemp, Warning, TEXT("Item name, with C++ : %s"), *Name);
 
 	// Check if GEngine is valid before using it because it may not be available in some contexts (e.g., during construction)
 	// GEngine is a global pointer to the engine instance, which provides access to various engine functionalities, including logging and displaying messages on the screen.
@@ -36,5 +39,25 @@ void AItem::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	if (GEngine) {
+		// Display a message on the screen
+		GEngine->AddOnScreenDebugMessage(4, 60.f, FColor::Red, TEXT("Debug custom message with C++"));
+
+		
+
+		// Using FString::Printf to format the message with DeltaTime
+		FString Message = FString::Printf(TEXT("Item Tick called with C++, DeltaTime: %f"), DeltaTime);
+		GEngine->AddOnScreenDebugMessage(5, 60.f, FColor::Green, Message);
+
+		// Get the name of the item
+		FString Name = GetName();
+
+		// the * means we are dereferencing the FString to get the underlying string value. 
+		// Meaning the FString type has custom string formatting capabilities.
+		// We pass in a C style string format specifier %s to insert the name of the item into the message.
+		FString NameMessage = FString::Printf(TEXT("Item Name called with C++, Name : %s"), *Name);
+		GEngine->AddOnScreenDebugMessage(5, 60.f, FColor::Green, NameMessage);
+
+	}
 }
 
