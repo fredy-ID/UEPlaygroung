@@ -14,7 +14,7 @@
 #define TWENTY_FOUR 24
 
 
- 
+
 // Sets default values
 // A in AItem stands for "Actor," which is a base class for all objects that can be placed in the world.
 AItem::AItem()
@@ -61,8 +61,6 @@ void AItem::BeginPlay()
 	// GetActorLocation() is a member function of the AActor class, which returns the current location of the actor in the game world.
 	FVector Location = GetActorLocation();
 	FVector Forward = GetActorForwardVector();
-
-	
 
 	if (World) 
 	{
