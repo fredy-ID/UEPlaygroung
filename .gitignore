@@ -187,3 +187,82 @@ Source/.dll/ # Si vous avez des DLL dans Source
 
 # Ajoutez ici d'autres fichiers ou dossiers spécifiques à votre projet ou aux plugins tiers
 # Par exemple, si un plugin tiers génère son propre dossier de cache.
+
+
+# Dossiers générés par Unreal Engine (à exclure absolument)
+Binaries/
+Build/
+DerivedDataCache/
+Intermediate/
+Saved/
+
+# Fichiers et dossiers spécifiques à l'IDE (exclure car auto-générés ou spécifiques à l'utilisateur)
+.vs/
+.idea/
+*.VC.db
+*.VC.opendb
+*.VC.VC.opendb
+*.suo
+*.user
+*.config
+*.sln.docstates
+*.vsp
+*.sdf
+*.opensdf
+*.opendb
+*.exe
+*.dll
+*.pdb
+*.lib
+*.obj
+*.exp
+*.ilk
+*.aps
+*.bsc
+*.ncb
+*.rcproj
+*.bak
+*.cache
+*.res
+*.tlog
+*.idb
+*.ipch
+
+# Fichiers de log et temporaires
+*.log
+*.tmp
+*.temp
+*.assetlog
+*.ini.bak
+*.txt.bak
+
+# Packages de build (résultat de la compilation du jeu)
+# Assurez-vous que le dossier de sortie de votre build est également ignoré.
+# Souvent, cela se trouve dans un dossier 'WindowsNoEditor', 'LinuxNoEditor', etc.
+# Si vous avez un dossier de build spécifique, ajoutez-le ici :
+# YourProjectName/Packed/
+# WindowsNoEditor/
+# LinuxNoEditor/
+# MacNoEditor/
+# Android/
+# iOS/
+
+# Fichiers Blueprint intermédiaires (certains d'entre eux peuvent apparaître)
+# Il est rare que ces fichiers se créent en dehors de Intermediate/, mais au cas où.
+# *.gen.cpp
+# *.gen.h
+# *.gen.manifest
+
+# Fichiers Git spécifiques
+.gitattributes
+.gitmodules
+
+# Fichiers OSX
+.DS_Store
+*.orig
+
+# Fichiers Linux
+*.swp
+
+# Fichiers de crash
+CrashReportClient/
