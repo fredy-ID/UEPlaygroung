@@ -64,7 +64,7 @@ void AItem::BeginPlay()
 
 	if (World) 
 	{
-		SetActorLocation(FVector(Location.X + 100.f, Location.Y + 100.f, Location.Z + 100.f));
+		
 
 		// My personal macro to draw a debug sphere and a line in the game world, defined in Playgroung.h
 		DRAW_DEBUG_SPHERE(Location);
@@ -103,6 +103,10 @@ void AItem::BeginPlay()
 			false, // Whether to persist the point in the world
 			30.f // Duration for which the point will be visible
 		);
+
+		// Ces deux lignes sont retirés car je test AddActorWorldOffset
+		/*SetActorLocation(FVector(Location.X + 100.f, Location.Y + 100.f, Location.Z + 100.f));
+		SetActorRotation(FRotator(60.f, 45.f, 120.f));*/
 	}
 
 }
