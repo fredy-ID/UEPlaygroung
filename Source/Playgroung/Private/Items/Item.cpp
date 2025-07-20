@@ -64,6 +64,8 @@ void AItem::BeginPlay()
 
 	if (World) 
 	{
+		SetActorLocation(FVector(Location.X + 100.f, Location.Y + 100.f, Location.Z + 100.f));
+
 		// My personal macro to draw a debug sphere and a line in the game world, defined in Playgroung.h
 		DRAW_DEBUG_SPHERE(Location);
 		DRAW_LINE(Location, Location + Forward * -100.f);
