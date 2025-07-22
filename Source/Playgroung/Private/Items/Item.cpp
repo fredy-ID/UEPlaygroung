@@ -116,10 +116,21 @@ void AItem::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	// Movement rate in units of centimeters per second (cm/s)
+	float MovementRate = 100.f;
+	float RotationRate = 50.f;
+
+	// AddActorWorldOffset is a function that moves the actor by a specified offset in the world space.
+	// //DeltaTime is the time elapsed since the last frame, which is used to ensure smooth movement regardless of frame rate.
+	// MovementRate * DeltaTime (cm/s) * (s/frame) = cm/frame
+	AddActorWorldOffset(FVector(MovementRate * DeltaTime, 0.f, 0.f));
+	AddActorWorldRotation(FRotator(0.f, RotationRate * DeltaTime, 0.f));
+	DRAW_DEBUG_SPHERE_SingleFrame(GetActorLocation());
+	DRAW_DEBUG_VECTOR_SingleFrame(GetActorLocation(), GetActorLocation() + GetActorForwardVector() * 100.f);
+
 	if (GEngine) {
 		// Display a message on the screen
 		GEngine->AddOnScreenDebugMessage(4, 60.f, FColor::Red, TEXT("Debug custom message with C++"));
-
 		
 
 		// Using FString::Printf to format the message with DeltaTime
