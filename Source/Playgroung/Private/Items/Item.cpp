@@ -25,6 +25,8 @@ void AItem::BeginPlay()
 {
 	Super::BeginPlay();
 
+
+	
 }
 
 // la fonction est une fonction membre (::) de la classe AItem qui prend un paramètre de type float et retourne un float.
@@ -45,9 +47,14 @@ void AItem::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	DRAW_DEBUG_VECTOR_SingleFrame(GetActorLocation(), GetActorLocation() + GetActorForwardVector() * 100.f);
-
 	RunningTime += DeltaTime;
+
+	DRAW_DEBUG_SPHERE_SingleFrame(GetActorLocation());
+	DRAW_DEBUG_VECTOR_SingleFrame(GetActorLocation(), GetActorLocation() + GetActorForwardVector() * 100.f);
+	
+	FVector AvgVector = Avg<FVector>(GetActorLocation(), FVector::ZeroVector); // Average distance between origin and actor location
+	DRAW_DEBUG_POINT_SingleFrame(AvgVector);
+
 
 	
 }

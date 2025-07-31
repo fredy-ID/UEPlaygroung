@@ -14,6 +14,16 @@ AItemRefTwo::AItemRefTwo()
 void AItemRefTwo::BeginPlay()
 {
 	Super::BeginPlay();
+
+	Avg<int32>(1, 3); // Example of using the Avg function with int32 type
+	Avg<float>(1.f, 2.f); // Example of using the Avg function with float type
+	Avg(1, 2); // Example of using the Avg function with int type
+
+	int32 AvgInt = Avg<int32>(1, 3);
+	UE_LOG(LogTemp, Warning, TEXT("Avg<int32>(1, 3) = %d"), AvgInt);
+
+	float AvgFloat = Avg<float>(3.45f, 7.86f);
+	UE_LOG(LogTemp, Warning, TEXT("Avg<float>(3.45f, 7.86f) = %f"), AvgFloat);
 	
 }
 
