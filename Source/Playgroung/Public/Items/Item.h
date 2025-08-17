@@ -24,6 +24,7 @@ protected:
 	float Amplitude = 0.25f;
 
 	// TimeConstant is a parameter that controls the frequency of the sine wave.
+	// We have EditAnyWhere, BlueprintReadWrite, BlueprintReadOnly, EditDefaultsOnly, EditInstanceOnly, VisibleAnywhere, VisibleInstanceOnly, and many more
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Sine Parameters (Custom C++)")
 	float TimeConstant;
 
@@ -51,10 +52,21 @@ private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	float RunningTime;
 
+	// This is a static mesh component of type UStaticMeshComponent wich is pointing to a static mesh asset in Unreal Engine
+	// This creates an empty pointer to a static mesh component that can be used to represent the item visually in the game world
+	// Marks this property as a UPROPERTY, which is a macro that allows the property to be serialized and edited in the Unreal Engine editor and participate in the garbage collection system
+	// So Unreal Engine will know that itemMesh points to a given object and will not delete it until it is no longer needed
+	
+	UPROPERTY(VisibleAnywhere)
+	UStaticMeshComponent* ItemMesh; 
+
 
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement Parameters (Custom C++)")
+	float RotationRate = 0.3f;
 
 };
 

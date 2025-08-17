@@ -18,6 +18,18 @@ AItem::AItem() : TimeConstant(5.f) // : TimeConstant(5.f) -> Initializing TimeCo
 
 	// This is another way to initialize a variable in C++. but it is better to initialize variables in the constructor initialization list or in the class declaration.
 	// TimeConstant = 5.f; 
+
+	// Create a default subobject of type UStaticMeshComponent and assign it to ItemMesh
+	// ItemMesh is a UStaticMeshComponent, wich derives from scene component, which is a base class for all components that can be attached to an actor in Unreal Engine.
+	// Which means we can take our actors and attach them to other actors or components in the game world, which includes the root component of the actor "RootComponent".
+	// So our actors inherited root component variable "RootComponent" can be reassigned to a new component, like ItemMesh, and it will be the root component of our actor.
+	ItemMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ItemMeshComponent"));
+	
+	// Just like in Blueprints, that default scene root that our root component pointer variable stored the address of, is going to be deleted automatically.
+	// And that's because the garbage collection system will see that RootComponent no longer points to it. And since it is not referenced anywhere else, it will be garbage collected and deleted.
+	// So now the RootComponent pointer variable will point to ItemMesh SubObject, which is a UStaticMeshComponent that we created in the constructor.
+	RootComponent = ItemMesh; // Set the root component of the actor to ItemMesh
+
 }
 
 // Called when the game starts or when spawned
@@ -25,8 +37,6 @@ void AItem::BeginPlay()
 {
 	Super::BeginPlay();
 
-
-	
 }
 
 // la fonction est une fonction membre (::) de la classe AItem qui prend un paramètre de type float et retourne un float.
@@ -49,13 +59,9 @@ void AItem::Tick(float DeltaTime)
 
 	RunningTime += DeltaTime;
 
-	DRAW_DEBUG_SPHERE_SingleFrame(GetActorLocation());
-	DRAW_DEBUG_VECTOR_SingleFrame(GetActorLocation(), GetActorLocation() + GetActorForwardVector() * 100.f);
 	
-	FVector AvgVector = Avg<FVector>(GetActorLocation(), FVector::ZeroVector); // Average distance between origin and actor location
-	DRAW_DEBUG_POINT_SingleFrame(AvgVector);
+	AddActorWorldRotation(FRotator(0.f, .3f * DeltaTime, 0.f));
 
-
-	
+	UPDATE_ACTOR_ROTATION_YAW(RunningTime, RotationRate); // Rotate the actor around the Yaw axis at a rate of 50 degrees per second
 }
 

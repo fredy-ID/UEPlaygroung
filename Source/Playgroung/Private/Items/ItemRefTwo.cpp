@@ -51,7 +51,11 @@ void AItemRefTwo::Tick(float DeltaTime)
 	float DeltaZ = Amplitude * FMath::Sin(RunningTime * TimeConstant); // period = 2* PI / K where K is the frequency of the sine wave (all the way up and all the way down). In this case, K = 5.f, so the period is 2*PI/5.f
 	AddActorWorldOffset(FVector(0.f, 0.f, DeltaZ)); */
 
+	DRAW_DEBUG_SPHERE_SingleFrame(GetActorLocation());
 	DRAW_DEBUG_VECTOR_SingleFrame(GetActorLocation(), GetActorLocation() + GetActorForwardVector() * 100.f);
+
+	FVector AvgVector = Avg<FVector>(GetActorLocation(), FVector::ZeroVector); // Average distance between origin and actor location
+	DRAW_DEBUG_POINT_SingleFrame(AvgVector);
 
 }
 
